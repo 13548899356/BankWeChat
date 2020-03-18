@@ -1,0 +1,42 @@
+---
+server:
+  port: 7201
+spring:
+  profiles: consumer1
+  application:
+    name: nacos-consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  main:
+    allow-bean-definition-overriding: true
+---
+server:
+  port: 7202
+spring:
+  profiles: consumer2
+  application:
+    name: nacos-consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  main:
+    allow-bean-definition-overriding: true
+---
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/p2p?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 123
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: com.zking.nacosprovider.model
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
